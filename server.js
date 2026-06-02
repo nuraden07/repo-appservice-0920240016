@@ -1,16 +1,19 @@
-const express = require('express'); const app = express();
-const port = process.env.PORT || 3000;
+const express = require('express');
+const app = express();
+const port = process.env.PORT || 8080;
 
+// Endpoint utama
 app.get('/', (req, res) => {
-res.send('<h1>Praktikum Azure App Service</h1><p>Aplikasi berjalan.</p>');
+    res.send('App Service Serverless Aktif!');
 });
 
-app.get('/status', (req, res) => {
-res.json({ status: 'running', service: 'Azure App Service', timestamp: new Date() });
+// Endpoint baru sesuai tugas Exercise
+app.get('/waktu', (req, res) => {
+    res.json({
+        waktuServer: new Date().toISOString()
+    });
 });
 
-app.get('/profil', (req, res) => {
-res.json({ mataKuliah: 'Komputasi Awan', topik: 'Serverless Azure' });
+app.listen(port, () => {
+    console.log(`Server berjalan di port ${port}`);
 });
-
-app.listen(port, () => console.log(`Server berjalan pada port ${port}`));
